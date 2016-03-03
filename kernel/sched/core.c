@@ -2199,7 +2199,22 @@ unsigned long nr_iowait(void)
 	return sum;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_INTELLI_HOTPLUG
+=======
+unsigned long nr_iowait_cpu(int cpu)
+{
+	struct rq *this = cpu_rq(cpu);
+	return atomic_read(&this->nr_iowait);
+}
+
+unsigned long this_cpu_load(void)
+{
+	struct rq *this = this_rq();
+	return this->cpu_load[0];
+}
+
+>>>>>>> ea78572... cpuquiet: import from omni-oppo and adapt- thanks maxwen
 unsigned long avg_nr_running(void)
 {
 	unsigned long i, sum = 0;
@@ -2252,19 +2267,20 @@ unsigned long avg_cpu_nr_running(unsigned int cpu)
 	return ave_nr_running;
 }
 EXPORT_SYMBOL(avg_cpu_nr_running);
-#endif
 
-unsigned long nr_iowait_cpu(int cpu)
-{
-	struct rq *this = cpu_rq(cpu);
-	return atomic_read(&this->nr_iowait);
-}
 
-unsigned long this_cpu_load(void)
+unsigned long get_avg_nr_running(unsigned int cpu)
 {
-	struct rq *this = this_rq();
-	return this->cpu_load[0];
+	struct rq *q;
+
+	if (cpu >= nr_cpu_ids)
+		return 0;
+
+	q = cpu_rq(cpu);
+
+	return q->ave_nr_running;
 }
+EXPORT_SYMBOL(get_avg_nr_running);
 
 
 /*
