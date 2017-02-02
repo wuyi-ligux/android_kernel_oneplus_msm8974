@@ -3046,6 +3046,11 @@ config CHARGE_LEVEL
 	help
 	  Allows configuration of ac and usb charging levels
 
+config HAS_MACH_MEMUTILS
+	default n
+	bool "Motorola MSM memcpy enhancements"
+	help
+	Faster memcpy performance for Krait
 endif
 
 config KERNEL_TEXT_MPU_PROT
