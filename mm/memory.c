@@ -1854,7 +1854,7 @@ int __get_user_pages(struct task_struct *tsk, struct mm_struct *mm,
 				 */
 				if ((ret & VM_FAULT_WRITE) &&
 				    !(vma->vm_flags & VM_WRITE))
-					foll_flags |= FOLL_COW;
+					foll_flags &= ~FOLL_WRITE;
 
 				cond_resched();
 			}
