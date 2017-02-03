@@ -3073,14 +3073,6 @@ config PVS_LEVEL_INTERFACE
 	 Allow PVS level to be shown
 
 
-config INTELLI_HOTPLUG
-	bool "Intelli hotplug driver"
-	depends on HOTPLUG_CPU
-	default y
-	help
-	  An intelligent cpu hotplug driver for
-	  Low Latency Frequency Transition capable processors.
-
 endif
 
 config KERNEL_TEXT_MPU_PROT
