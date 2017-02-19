@@ -53,6 +53,8 @@
 /* OPPO 2013-10-24 yxq Add end */
 #define INT_DEBOUNCE_MSEC	10
 
+extern void lazyplug_enter_lazy(bool enter);
+
 static struct lm3630_chip_data *lm3630_pchip;
 
 struct lm3630_chip_data {
@@ -209,10 +211,12 @@ static int lm3630_intr_config(struct lm3630_chip_data *pchip)
 	// if display is switched off
 	if (!use_fb_notifier && bl_level == 0)
 		state_suspend();
+        lazyplug_enter_lazy(true);
 
 	// if display is switched on
 	if (!use_fb_notifier && bl_level != 0 && pre_brightness == 0)
 		state_resume();
+        lazyplug_enter_lazy(false);
 #endif
 
 #ifdef CONFIG_MACH_OPPO
