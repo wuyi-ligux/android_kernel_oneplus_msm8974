@@ -1,4 +1,4 @@
-/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -10,8 +10,18 @@
  * GNU General Public License for more details.
  */
 
-#ifndef __MSM_ISP32_H__
-#define __MSM_ISP32_H__
+&pm8941_lsid1 {
+	qcom,leds@d300 {
+		qcom,flash_0 {
+			qcom,current = <560>;
+		};
 
-extern struct msm_vfe_hardware_info vfe32_hw_info;
-#endif /* __MSM_ISP32_H__ */
+		qcom,flash_1 {
+			qcom,current = <560>;
+		};
+
+		qcom,flash_torch {
+			qcom,current = <130>;
+		};
+	};
+};
